@@ -14,7 +14,7 @@ class _albumsScreenState extends State<albumsScreen> {
 
   Future<List<albumsModel>> getalbums() async {
     List<albumsModel>model = [];
-    var url = Uri.parse("uri");
+    var url = Uri.parse('');
     var response = await http.get(url);
     var responseBody = jsonDecode(response.body);
     for (var i in responseBody) {

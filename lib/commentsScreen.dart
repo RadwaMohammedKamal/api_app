@@ -12,9 +12,14 @@ class commentsScreen extends StatefulWidget {
 class _commentsScreenState extends State<commentsScreen> {
   Future<List<CommentsModel>> getacomments() async {
     List<CommentsModel>model = [];
-    var url = Uri.parse("uri");
+
+    var url = Uri.parse("https://jsonplaceholder.typicode.com/posts/1/comments");
+    print(url);
+    print(url);
     var response = await http.get(url);
     var responseBody = jsonDecode(response.body);
+    print(responseBody);
+
     for (var i in responseBody) {
       model.add(CommentsModel(postId: i["postId"], id: i["id"], name: i["name"], email: i["email"], body: i["body"])
       );
@@ -35,7 +40,7 @@ class _commentsScreenState extends State<commentsScreen> {
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             return (snapshot.data == null) ? CircularProgressIndicator() :
             ListView.builder(
-              itemCount: snapshot.data.lengh,
+              itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   child: ListTile(
